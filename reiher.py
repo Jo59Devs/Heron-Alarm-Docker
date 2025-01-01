@@ -13,11 +13,11 @@ from PIL import Image, ImageDraw, ImageFont
 from tflite_runtime.interpreter import Interpreter, load_delegate
 # Edge-TPU
 EDGETPU_SHARED_LIB = 'libedgetpu.so.1'
-# Heron Classes
+# Classes
 nval = [ 0.00, 0.00, 0.00, 0.00, 0.00, 0.01, 0.00, 0.00, 0.03, 0.01, 0.01, 0.50, 0.00]
 list = [   13,   61,  559,  560,  561,  563,  564,  566,  567,  572,  592,  604,  765]
 
-# Container Stop
+# On Stop
 def handle_signal(signum, frame):
     global client
     print(f"Signal {signum} empfangen.")
@@ -25,12 +25,13 @@ def handle_signal(signum, frame):
     client.loop_stop()
     sys.exit(0)
 
-# Heron Alarm
+# Alarm
 def send_alarm(image):
     global client
     stamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
     cv2.imwrite("/tflite/python/examples/classification/image/"+stamp+"-Reiher.jpg", image)
-    client.publish("mqtt.0.Yard.Heron", 'true')
+    # Edit this Line
+    client.publish("mqtt.0.xxx.xxx", 'true')
 
 def set_input_tensor(interpreter, image):
     tensor_index = interpreter.get_input_details()[0]['index']
@@ -94,7 +95,8 @@ def make_interpreter(use_TPU):
 # MQTT
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, "rpi-reiher")
 client.username_pw_set("esp", "myesp")
-client.connect("192.168.178.70", 1883, 60)
+# Edit this Line
+client.connect("192.168.178.xx", xxxx, xx)
 client.loop_start()
 
 def main():
@@ -104,15 +106,13 @@ def main():
     signal.signal(signal.SIGINT, handle_signal)  # Optional für Ctrl+C in Entwicklung
     # Prepare labels.
     labels = load_labels('models/inat_bird_labels.txt')
-    # Get interpreter
-    # Without EdgeTPU !
-    #interpreter = make_interpreter('')
-    # With EdgeTPU
-    interpreter = make_interpreter('edgetpu')
+    # Choose interpreter
+    #interpreter = make_interpreter('') # Without EdgeTPU !
+    interpreter = make_interpreter('edgetpu') # With EdgeTPU
     interpreter.allocate_tensors()
     _, height, width, _ = interpreter.get_input_details()[0]['shape']
-    # Initialize video stream
-    cam = "rtsp://admin:touring@192.168.178.58:554//h264Preview_01_sub"
+    # Edit your Camera url
+    cam = "rtsp://admin:password@192.168.178.xx:554//h264Preview_01_sub"
     vs = VideoStream(cam).start()
     # Waiting for Camera and Network
     time.sleep(4)
@@ -125,7 +125,7 @@ def main():
             image_pred = image.resize((width ,height), Image.LANCZOS)
             results = classify_image(interpreter, image_pred)
             draw_image(0, image, results, labels)
-        # Reduce CPU-Acuracy
+        # Reduce the CPU load
         time.sleep(0.04)
 
 if __name__ == '__main__':
