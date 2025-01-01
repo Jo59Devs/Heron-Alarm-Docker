@@ -1,16 +1,13 @@
 #!/bin/bash
 
-# Prüfe, ob das Host-Verzeichnis bereits Dateien enthält
+# Check if the host directory already contains files
 if [ ! -f /tflite/reiher.py ]; then
-    echo "Initialisiere Host-Verzeichnis mit Dateien aus dem Container..."
+    echo "Initialize host directory with files from container..."
+    #mkdir -p tflite
     cp -r /root/tmp/* /tflite
 else
-    echo "Host-Verzeichnis ist bereits initialisiert."
+    echo "Host directory is already initialized."
 fi
-
-# Wechsel in das Arbeitsverzeichnis
-cd /tflite
-
-# Starte den Hauptprozess
-echo "Starte Hauptprozess: reiher.py"
-exec python3 reiher.py
+# Start the main process
+echo "Start the main process: reiher.py"
+exec python3 /tflite/reiher.py
