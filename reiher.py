@@ -44,7 +44,7 @@ def download_files():
 # Container Stop
 def handle_signal(signum, frame):
     global client
-    print(f"Signal {signum} empfangen.")
+    print(f"Signal {signum} received.")
     client.disconnect()
     client.loop_stop()
     sys.exit(0)
@@ -53,7 +53,8 @@ def handle_signal(signum, frame):
 def send_alarm(image):
     global client
     stamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
-    cv2.imwrite("/tflite/python/examples/classification/image/"+stamp+"-Reiher.jpg", image)
+    cv2.imwrite("/tflite/image/"+stamp+"-Reiher.jpg", image)
+    # Edit this Line
     client.publish("mqtt.0.Yard.Heron", 'true')
 
 def set_input_tensor(interpreter, image):
@@ -117,8 +118,9 @@ def make_interpreter(use_TPU):
 
 # MQTT
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, "rpi-test")
-client.username_pw_set("esp", "myesp")
-client.connect("192.168.178.70", 1883, 60)
+# Edit this Lines
+client.username_pw_set("user", "pass")
+client.connect("192.168.178.XX", 1883, 60)
 client.loop_start()
 
 def main():
@@ -129,15 +131,15 @@ def main():
     signal.signal(signal.SIGINT, handle_signal)  # Optional für Ctrl+C in Entwicklung
     # Prepare labels.
     labels = load_labels('models/inat_bird_labels.txt')
-    # Get interpreter
+    # Choose interpreter
     # Without EdgeTPU !
-    #interpreter = make_interpreter('')
+    interpreter = make_interpreter('')
     # With EdgeTPU
-    interpreter = make_interpreter('edgetpu')
+    # interpreter = make_interpreter('edgetpu')
     interpreter.allocate_tensors()
     _, height, width, _ = interpreter.get_input_details()[0]['shape']
-    # Initialize video stream
-    cam = "rtsp://admin:touring@192.168.178.58:554//h264Preview_01_sub"
+    # Initialize video stream - Edit the URL
+    cam = "rtsp://admin:pass@192.168.178.XX:554//h264Preview_01_sub"
     vs = VideoStream(cam).start()
     # Waiting for Camera and Network
     time.sleep(4)
@@ -150,8 +152,8 @@ def main():
             image_pred = image.resize((width ,height), Image.LANCZOS)
             results = classify_image(interpreter, image_pred)
             draw_image(0, image, results, labels)
-        # Reduce CPU-Acuracy
-        time.sleep(0.04)
+        # Reduce CPU-Load
+        # time.sleep(0.04)
 
 if __name__ == '__main__':
     main()
