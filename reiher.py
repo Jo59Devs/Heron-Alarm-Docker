@@ -1,9 +1,10 @@
 import os
-import sys
 import cv2
+import sys
 import time
 import signal
 import datetime
+import requests
 import numpy as np
 from os import path
 import importlib.util
@@ -11,13 +12,36 @@ import paho.mqtt.client as mqtt
 from imutils.video import VideoStream, FPS
 from PIL import Image, ImageDraw, ImageFont
 from tflite_runtime.interpreter import Interpreter, load_delegate
-# Edge-TPU
+
+# Edge-TPU 
 EDGETPU_SHARED_LIB = 'libedgetpu.so.1'
-# Classes
+
+# Heron Classes
 nval = [ 0.00, 0.00, 0.00, 0.00, 0.00, 0.01, 0.00, 0.00, 0.03, 0.01, 0.01, 0.50, 0.00]
 list = [   13,   61,  559,  560,  561,  563,  564,  566,  567,  572,  592,  604,  765]
 
-# On Stop
+# Downloads
+def download_files():
+    os.makedirs("models", exist_ok=True)
+    os.makedirs("image", exist_ok=True)
+    files = {
+        "models/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite": "https://github.com/google-coral/edgetpu/raw/master/test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite",
+        "models/mobilenet_v2_1.0_224_inat_bird_quant.tflite": "https://github.com/google-coral/edgetpu/raw/master/test_data/mobilenet_v2_1.0_224_inat_bird_quant.tflite",
+        "models/inat_bird_labels.txt": "https://github.com/google-coral/edgetpu/raw/master/test_data/inat_bird_labels.txt"
+    }
+    for file_path, url in files.items():
+        if not os.path.exists(file_path):
+            print(f"Downloading {file_path}...")
+            try:
+                response = requests.get(url)
+                response.raise_for_status()
+                with open(file_path, "wb") as f:
+                    f.write(response.content)
+                print(f"Downloaded {file_path}")
+            except Exception as e:
+                print(f"Failed to download {file_path} from {url}: {e}")
+                
+# Container Stop
 def handle_signal(signum, frame):
     global client
     print(f"Signal {signum} empfangen.")
@@ -25,13 +49,12 @@ def handle_signal(signum, frame):
     client.loop_stop()
     sys.exit(0)
 
-# Alarm
+# Heron Alarm
 def send_alarm(image):
     global client
     stamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
     cv2.imwrite("/tflite/python/examples/classification/image/"+stamp+"-Reiher.jpg", image)
-    # Edit this Line
-    client.publish("mqtt.0.xxx.xxx", 'true')
+    client.publish("mqtt.0.Yard.Heron", 'true')
 
 def set_input_tensor(interpreter, image):
     tensor_index = interpreter.get_input_details()[0]['index']
@@ -93,26 +116,28 @@ def make_interpreter(use_TPU):
         return Interpreter(model_path=model_file)
 
 # MQTT
-client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, "rpi-reiher")
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, "rpi-test")
 client.username_pw_set("esp", "myesp")
-# Edit this Line
-client.connect("192.168.178.xx", xxxx, xx)
+client.connect("192.168.178.70", 1883, 60)
 client.loop_start()
 
 def main():
     global client
+    download_files()
     # Register Signal-Handler
     signal.signal(signal.SIGTERM, handle_signal)
     signal.signal(signal.SIGINT, handle_signal)  # Optional für Ctrl+C in Entwicklung
     # Prepare labels.
     labels = load_labels('models/inat_bird_labels.txt')
-    # Choose interpreter
-    #interpreter = make_interpreter('') # Without EdgeTPU !
-    interpreter = make_interpreter('edgetpu') # With EdgeTPU
+    # Get interpreter
+    # Without EdgeTPU !
+    #interpreter = make_interpreter('')
+    # With EdgeTPU
+    interpreter = make_interpreter('edgetpu')
     interpreter.allocate_tensors()
     _, height, width, _ = interpreter.get_input_details()[0]['shape']
-    # Edit your Camera url
-    cam = "rtsp://admin:password@192.168.178.xx:554//h264Preview_01_sub"
+    # Initialize video stream
+    cam = "rtsp://admin:touring@192.168.178.58:554//h264Preview_01_sub"
     vs = VideoStream(cam).start()
     # Waiting for Camera and Network
     time.sleep(4)
@@ -125,7 +150,7 @@ def main():
             image_pred = image.resize((width ,height), Image.LANCZOS)
             results = classify_image(interpreter, image_pred)
             draw_image(0, image, results, labels)
-        # Reduce the CPU load
+        # Reduce CPU-Acuracy
         time.sleep(0.04)
 
 if __name__ == '__main__':
