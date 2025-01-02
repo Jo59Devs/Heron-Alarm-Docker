@@ -22,7 +22,7 @@ Passen sie ihren MQTT-Client an<br/>
 Wählen sie mit oder ohne Edge TPU Accelerator<br/>
 
 <code>cd coral<br/>
-docker build -t "reiher".<br/>
+docker build -t "reiher".
 docker run -it --privileged --restart always \
     -e MTX_PROTOCOLS=tcp \
     -v /dev/bus/usb:/dev/bus/usb \
