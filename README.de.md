@@ -24,4 +24,4 @@ Wählen sie mit oder ohne Edge TPU Accelerator<br/>
 Erstellen des Container:<br/>
 cd coral<br/>
 docker build -t "reiher".<br/>
-docker run -it --privileged --restart always -e MTX_PROTOCOLS=tcp -v /dev/bus/usb:/dev/bus/usb -v /home/pi/docker/tflite:/tflite reiher /bin/bas<br/>
+docker run -it --privileged --restart always -e MTX_PROTOCOLS=tcp -v /dev/bus/usb:/dev/bus/usb -v /home/pi/docker/tflite:/tflite reiher /bin/bash<br/>
