@@ -23,15 +23,8 @@ RUN pip3 install paho-mqtt
 RUN pip3 install -U numpy==1.23.5
 RUN pip3 install pillow
 RUN apt-get install -y libatlas-base-dev
-WORKDIR /root/tmp
-COPY entrypoint.sh reiher.py .
-RUN chmod +x /root/tmp/entrypoint.sh
-RUN mkdir -p image models && \
-    curl -o models/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite \
-        https://github.com/google-coral/edgetpu/raw/master/test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite && \
-    curl -o models/mobilenet_v2_1.0_224_inat_bird_quant.tflite \
-        https://github.com/google-coral/edgetpu/raw/master/test_data/mobilenet_v2_1.0_224_inat_bird_quant.tflite && \
-    curl -o models/inat_bird_labels.txt \
-        https://github.com/google-coral/edgetpu/raw/master/test_data/inat_bird_labels.txt
-
-ENTRYPOINT ["/root/tmp/entrypoint.sh"]
+WORKDIR /tmp
+COPY reiher.py entrypoint.sh .
+RUN chmod +x entrypoint.sh
+WORKDIR /tflite
+ENTRYPOINT ["/tmp/entrypoint.sh"]
