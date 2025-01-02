@@ -21,7 +21,7 @@ Passen sie ihren MQTT-Client an<br/>
 Ändern sie den RTSP-Link ihrer Kamera<br/>
 Wählen sie mit oder ohne Edge TPU Accelerator<br/>
 
-<code>cd coral</code><br/>
+<code>cd coral<br/>
 docker build -t "reiher".</code><br/>
 docker run -it --privileged --restart always \<br/>
     -e MTX_PROTOCOLS=tcp \<br/>
