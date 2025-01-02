@@ -23,8 +23,8 @@ Wählen sie mit oder ohne Edge TPU Accelerator<br/>
 
 <code>cd coral</code><br/>
 <code>docker build -t "reiher".</code><br/>
-<code>docker run -it --privileged --restart always \</code><br/>
-    <code>-e MTX_PROTOCOLS=tcp \</code><br/>
-    <code>-v /dev/bus/usb:/dev/bus/usb \</code><br/>
-    <code>-v /home/pi/docker/tflite:/tflite \</code><br/>
+<code>docker run -it --privileged --restart always \<br/>
+    <code>-e MTX_PROTOCOLS=tcp \<br/>
+    <code>-v /dev/bus/usb:/dev/bus/usb \<br/>
+    <code>-v /home/pi/docker/tflite:/tflite \<br/>
     <code>reiher /bin/bash</code><br/>
