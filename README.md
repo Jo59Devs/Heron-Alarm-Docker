@@ -1,4 +1,4 @@
-Are you having problems with gray Herons on your pond?<br />
+Alarm when a gray heron is at your pond<br />
 The container monitors your area, using an IP Camera and when <br />
 a Heron is identified, there is an alarm about Mqtt.<br />
 
