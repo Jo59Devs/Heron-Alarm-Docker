@@ -1,4 +1,4 @@
-Alarm: Reiher am Teich<br/>
+<h1>Alarm: Reiher am Teich</h1>
 
 Der Docker-Container überwacht ihren Teich.<br/>
 Wird ein Reiher identifiziert, gibt es einen Alarm über MQTT.<br/>
