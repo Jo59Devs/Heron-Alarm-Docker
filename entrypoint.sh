@@ -3,8 +3,7 @@
 # Check if the host directory already contains files
 if [ ! -f /tflite/reiher.py ]; then
     echo "Initialize host directory with files from container..."
-    #mkdir -p tflite
-    cp -r /root/tmp/* /tflite
+    mv /tmp/reiher.py /tflite/reiher.py
 else
     echo "Host directory is already initialized."
 fi
