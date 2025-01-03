@@ -12,7 +12,7 @@ Optional:<br/>
 Coral Edge TPU USB Accelerator - around 50 frames/s on Raspberry Pi 4, without it approximately 7 frames/s</ul><br/>
 
 Steps:<br/>
-<li><code>mkdir docker/tflite</code> # Volume for the container</li>
+<ul><li><code>mkdir docker/tflite</code> # Volume for the container</li>
 <li><code>mkdir coral</code> # Add the repository files here</li>
 <li>Edit <code>reiher.py</code></li>
 <li>Adjust your MQTT client</li>
