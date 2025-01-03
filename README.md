@@ -14,13 +14,12 @@ Coral Edge TPU USB Accelerator - around 50 frames/s on Raspberry Pi 4, without i
 Steps:<br/>
 <ul>Create the following paths on the Docker host:<br/>
 <code>mkdir docker/tflite</code> # Volume for the container<br/>
-<code>mkdir coral</code> # Add the repository files here</ul><br/>
-
+<code>mkdir coral</code> # Add the repository files here<br/>
 Edit <code>reiher.py</code><br/>
 Adjust your MQTT client<br/>
 Change the MQTT alarm ID<br/>
 Change the RTSP link of your camera<br/>
-Choose whether to use the Edge TPU accelerator or not<br/>
+Choose whether to use the Edge TPU accelerator or not</ul><br/>
 
 <code>cd coral<br/>
 docker build -t "reiher".
