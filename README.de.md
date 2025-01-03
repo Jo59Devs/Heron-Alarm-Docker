@@ -20,7 +20,7 @@ Bearbeiten von <code>reiher.py</code>
 <li>RTSP-Link der Kamera anpassen</li>
 <li>Auswahl ob mit oder ohne Edge TPU Accelerator</li></ul><br/>
 
-<h3>Build the Container:</h3>
+<h3>Erstellen des Containers:</h3>
 <pre style="background-color: #f4f4f4; border: 1px solid #ddd; border-radius: 5px; padding: 10px; color: #333; font-family: 'Courier New', Courier, monospace; line-height: 1.5;">
 <span style="color: #0000ff;">cd</span> coral
 <span style="color: #0000ff;">docker</span> build -t <span style="color: #a31515;">"reiher"</span>.
