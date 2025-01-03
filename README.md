@@ -12,7 +12,7 @@ Required components:<br/>
 Optional:
 <ul><li>Coral Edge TPU USB Accelerator - ≈50 frames/s on Pi 4, without ≈7 frames/s</li></ul>
 
-Steps:<br/>
+Create Folders:<br/>
 <ul><li><code>mkdir docker/tflite</code> # Volume for the container</li>
 <li><code>mkdir coral</code> # Add the repository files here</li></ul>
 Edit <code>reiher.py</code>
