@@ -23,7 +23,7 @@ Steps:<br/>
 <code>cd coral<br/>
 docker build -t "reiher".
 docker run -it --privileged --restart always \\
-    <p>-e MTX_PROTOCOLS=tcp \\</p>
-    <p>-v /dev/bus/usb:/dev/bus/usb \\</p>
-    <p>-v /home/pi/docker/tflite:/tflite \\</p>
-    <p>reiher /bin/bash</p></code>
+    <p>-e MTX_PROTOCOLS=tcp \\
+    -v /dev/bus/usb:/dev/bus/usb \\
+    -v /home/pi/docker/tflite:/tflite \\
+    reiher /bin/bash</p></code>
