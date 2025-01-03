@@ -1,14 +1,15 @@
-<h1>Heron at the Pond</h1>
+<h1>Heron Alarm at the Pond</h1>
 
 The Docker container monitors your pond.<br/>
 If a heron is detected, an alarm is triggered via MQTT.<br/>
 
 Required components:<br/>
-Raspberry Pi >= 4<br/>
-IP camera (a zoom feature is advantageous)<br/>
-MQTT client, such as ioBroker, etc.<br/>
+<ul>Raspberry Pi >= 4<br/>
+Installed Docker
+IP Camera (with zoom an advantage)<br/>
+MQTT Client, such as ioBroker, etc.<br/>
 Optional:<br/>
-Coral Edge TPU USB Accelerator - around 50 frames/s on Raspberry Pi 4, without it approximately 7 frames/s<br/>
+Coral Edge TPU USB Accelerator - around 50 frames/s on Raspberry Pi 4, without it approximately 7 frames/s</ul>ul><br/>
 
 Steps:<br/>
 Create the following paths on the Docker host:<br/>
