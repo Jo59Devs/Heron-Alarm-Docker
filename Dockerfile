@@ -24,7 +24,7 @@ RUN pip3 install -U numpy==1.23.5
 RUN pip3 install pillow
 RUN apt-get install -y libatlas-base-dev
 WORKDIR /tmp
-COPY reiher.py entrypoint.sh .
+COPY heron.py entrypoint.sh .
 RUN chmod +x entrypoint.sh
 WORKDIR /tflite
 ENTRYPOINT ["/tmp/entrypoint.sh"]
