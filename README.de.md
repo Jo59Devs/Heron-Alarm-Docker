@@ -3,6 +3,7 @@
 Der Docker Container überwacht ihren Teich.<br/>
 Wenn ein Reiher im Bereich ist, wird ein Alarm via MQTT ausgelöst.<br/>
 Zudem wird ein Bild im Image-Ordner gespeichert.<br/>
+
 Benötigte Komponenten:<br/>
 <ul><li>Raspberry Pi >= 4</li>
 <li>Installierter Docker</li>
