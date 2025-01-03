@@ -9,7 +9,7 @@ Benötigte Komponenten:<br/>
 <li>IP Kamera (mit Zoom von Vorteil)</li>
 <li>MQTT Client, wie ioBroker, etc.</li></ul>
 Optional:
-<ul><li>Coral Edge TPU USB Accelerator - ≈50 frames/s on Pi 4, ohne ≈7 frames/s</li></ul>
+<ul><li>Coral Edge TPU USB Accelerator - ≈50 frames/s auf Pi 4, ohne ≈7 frames/s</li></ul>
 
 Ordner anlegen:<br/>
 <ul><li><code>mkdir docker/tflite</code> # Volume für den Container</li>
