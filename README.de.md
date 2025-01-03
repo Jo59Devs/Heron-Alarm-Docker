@@ -11,7 +11,7 @@ Benötigte Komponenten:<br/>
 Optional:
 <ul><li>Coral Edge TPU USB Accelerator - ≈50 frames/s on Pi 4, ohne ≈7 frames/s</li></ul>
 
-Steps:<br/>
+Ordner anlegen:<br/>
 <ul><li><code>mkdir docker/tflite</code> # Volume für den Container</li>
 <li><code>mkdir coral</code> # Hier die Repo Dateien einfügen</li></ul>
 Bearbeiten von <code>reiher.py</code>
