@@ -18,7 +18,7 @@ Steps:<br/>
 <li>Adjust your MQTT client</li>
 <li>Change the MQTT alarm ID</li>
 <li>Change the RTSP link of your camera</li>
-<li>Choose whether to use the Edge TPU accelerator or not</li></ul>
+<li>Choose whether to use the Edge TPU accelerator or not</li></ul><br/>
 
 <code>cd coral<br/>
 docker build -t "reiher".
