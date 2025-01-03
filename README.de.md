@@ -1,30 +1,32 @@
-<h1>Alarm: Reiher am Teich</h1>
+<h1>Reiher Alarm am Teich</h1>
 
-Der Docker-Container überwacht ihren Teich.<br/>
-Wird ein Reiher identifiziert, gibt es einen Alarm über MQTT.<br/>
+Der Docker Container überwacht ihren Teich.<br/>
+Wenn ein Reiher im Bereich ist, wird ein Alarm via MQTT ausgelöst.<br/>
 
-Notwendige Komponenten:<br/>
-Raspberry Pi >= 4<br/>
-IP Kamera (mit Zoom ist von Vorteil)<br/>
-MQTT-Client, wie ioBroker etc.<br/>
-Optional:<br/>
-Coral Edge TPU USB Accelerator - ca. 50 frames/s auf dem Raspberry Pi 4, ohne ca. 7 frames/s<br/>
+Benötigte Komponenten:<br/>
+<ul><li>Raspberry Pi >= 4</li>
+<li>Installierter Docker</li>
+<li>IP Camera (mit Zoom von Vorteil)</li>
+<li>MQTT Client, wie ioBroker, etc.</li></ul>
+Optional:
+<ul><li>Coral Edge TPU USB Accelerator - ≈50 frames/s on Pi 4, ohne ≈7 frames/s</li></ul>
 
-Schritte:<br/>
-Erstellen sie folgende Pfade auf dem Docker Host:<br/>
-<code>mkdir docker/tflite</code> # Volume für den Container<br/>
-<code>mkdir coral</code> # Hier die Repo Dateien einfügen<br/>
+Steps:<br/>
+<ul><li><code>mkdir docker/tflite</code> # Volume für den Container</li>
+<li><code>mkdir coral</code> # Hier die Repo Dateien einfügen</li>
+<li>Edit <code>reiher.py</code></li>
+<li>Anpassen des MQTT client</li>
+<li>Ändern der MQTT Alarm ID</li>
+<li>RTSP-Link der Camera anpassen</li>
+<li>Auswahl ob mit oder ohne Edge TPU Accelerator</li></ul><br/>
 
-Editieren von reiher.py<br/>
-Passen sie ihren MQTT-Client an<br/>
-Ändern sie die MQTT Alarm-ID<br/>
-Ändern sie den RTSP-Link ihrer Kamera<br/>
-Wählen sie mit oder ohne Edge TPU Accelerator<br/>
-
-<code>cd coral
-docker build -t "reiher".
-docker run -it --privileged --restart always \\
-    -e MTX_PROTOCOLS=tcp \\
-    -v /dev/bus/usb:/dev/bus/usb \\
-    -v /home/pi/docker/tflite:/tflite \\
-    reiher /bin/bash</code>
+<h3>Build the Container:</h3>
+<pre style="background-color: #f4f4f4; border: 1px solid #ddd; border-radius: 5px; padding: 10px; color: #333; font-family: 'Courier New', Courier, monospace; line-height: 1.5;">
+<span style="color: #0000ff;">cd</span> coral
+<span style="color: #0000ff;">docker</span> build -t <span style="color: #a31515;">"reiher"</span>.
+<span style="color: #0000ff;">docker</span> run -it --privileged --restart always \
+    -e MTX_PROTOCOLS=<span style="color: #a31515;">tcp</span> \
+    -v <span style="color: #a31515;">/dev/bus/usb:/dev/bus/usb</span> \
+    -v <span style="color: #a31515;">/home/pi/docker/tflite:/tflite</span> \
+    reiher /bin/bash
+</pre>
