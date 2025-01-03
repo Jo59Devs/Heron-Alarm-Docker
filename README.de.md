@@ -6,7 +6,7 @@ Wenn ein Reiher im Bereich ist, wird ein Alarm via MQTT ausgelöst.<br/>
 Benötigte Komponenten:<br/>
 <ul><li>Raspberry Pi >= 4</li>
 <li>Installierter Docker</li>
-<li>IP Camera (mit Zoom von Vorteil)</li>
+<li>IP Kamera (mit Zoom von Vorteil)</li>
 <li>MQTT Client, wie ioBroker, etc.</li></ul>
 Optional:
 <ul><li>Coral Edge TPU USB Accelerator - ≈50 frames/s on Pi 4, ohne ≈7 frames/s</li></ul>
