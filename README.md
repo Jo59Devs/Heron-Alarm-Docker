@@ -5,7 +5,7 @@ If a heron is detected, an alarm is triggered via MQTT.<br/>
 
 Required components:<br/>
 <ul>Raspberry Pi >= 4<br/>
-Installed Docker
+Installed Docker<br/>
 IP Camera (with zoom an advantage)<br/>
 MQTT Client, such as ioBroker, etc.<br/>
 Optional:<br/>
