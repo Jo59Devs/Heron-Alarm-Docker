@@ -53,7 +53,7 @@ def handle_signal(signum, frame):
 def send_alarm(image):
     global client
     stamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
-    cv2.imwrite("/tflite/image/"+stamp+"-Reiher.jpg", image)
+    cv2.imwrite("/tflite/image/"+stamp+"-Heron.jpg", image)
     # Edit this Line
     client.publish("mqtt.0.Yard.Heron", 'true')
 
