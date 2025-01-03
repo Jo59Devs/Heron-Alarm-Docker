@@ -31,4 +31,3 @@ Bearbeiten von <code>heron.py</code>
     -v <span style="color: #a31515;">/home/pi/docker/tflite:/tflite</span> \
     heron /bin/bash
 </pre>
-Anmerkung: Teile des Python-Script stammen aus der original Google-Coral Repo
