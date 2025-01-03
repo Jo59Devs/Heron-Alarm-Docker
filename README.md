@@ -14,9 +14,9 @@ Optional:
 
 Steps:<br/>
 <ul><li><code>mkdir docker/tflite</code> # Volume for the container</li>
-<li><code>mkdir coral</code> # Add the repository files here</li>
+<li><code>mkdir coral</code> # Add the repository files here</li></ul>
 Edit <code>reiher.py</code>
-<li>Adjust your MQTT client</li>
+<ul><li>Adjust your MQTT client</li>
 <li>Change the MQTT alarm ID</li>
 <li>Change the RTSP link of your camera</li>
 <li>Choose whether to use the Edge TPU accelerator or not</li></ul><br/>
