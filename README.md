@@ -22,7 +22,7 @@ Steps:<br/>
 
 <h3>Build the Container:</h3>
 <pre style="background-color: #f4f4f4; border: 1px solid #ddd; border-radius: 5px; padding: 10px; color: #333; font-family: 'Courier New', Courier, monospace; line-height: 1.5;">
-<span style="color: #00ff00;">cd</span> coral
+<span style="color: #0000ff;">cd</span> coral
 <span style="color: #0000ff;">docker</span> build -t <span style="color: #a31515;">"reiher"</span>.
 <span style="color: #0000ff;">docker</span> run -it --privileged --restart always \
     -e MTX_PROTOCOLS=<span style="color: #a31515;">tcp</span> \
