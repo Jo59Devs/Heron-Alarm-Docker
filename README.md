@@ -23,7 +23,18 @@ Steps:<br/>
 <code>cd coral<br/>
 docker build -t "reiher".
 docker run -it --privileged --restart always \\
-    <p>-e MTX_PROTOCOLS=tcp \\
+    -e MTX_PROTOCOLS=tcp \\
     -v /dev/bus/usb:/dev/bus/usb \\
     -v /home/pi/docker/tflite:/tflite \\
-    reiher /bin/bash</p></code>
+    reiher /bin/bash</code>
+
+<h2>3. Erstellen des Containers:</h2>
+<pre style="background-color: #f4f4f4; border: 1px solid #ddd; border-radius: 5px; padding: 10px; color: #333; font-family: 'Courier New', Courier, monospace; line-height: 1.5;">
+<span style="color: #0000ff;">cd</span> coral
+<span style="color: #0000ff;">docker</span> build -t <span style="color: #a31515;">"reiher"</span>.
+<span style="color: #0000ff;">docker</span> run -it --privileged --restart always \
+    -e MTX_PROTOCOLS=<span style="color: #a31515;">tcp</span> \
+    -v <span style="color: #a31515;">/dev/bus/usb:/dev/bus/usb</span> \
+    -v <span style="color: #a31515;">/home/pi/docker/tflite:/tflite</span> \
+    reiher /bin/bash
+</pre>
