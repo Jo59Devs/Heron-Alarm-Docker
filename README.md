@@ -32,4 +32,4 @@ Edit <code>heron.py</code>
     heron /bin/bash
 </pre>
 
-Parts of the Python script come from the original Google Coral Repo
+Note: Parts of the Python-Script come from the original Google Coral Repo
