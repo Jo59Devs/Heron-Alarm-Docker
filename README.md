@@ -2,6 +2,7 @@
 
 The Docker container monitors your pond.<br/>
 If a heron is detected, an alarm is triggered via MQTT.<br/>
+Inference is saved in the Image folder.<br/>
 
 Required components:<br/>
 <ul><li>Raspberry Pi >= 4</li>
@@ -14,7 +15,7 @@ Optional:
 Steps:<br/>
 <ul><li><code>mkdir docker/tflite</code> # Volume for the container</li>
 <li><code>mkdir coral</code> # Add the repository files here</li>
-<li>Edit <code>reiher.py</code></li>
+Edit <code>reiher.py</code>
 <li>Adjust your MQTT client</li>
 <li>Change the MQTT alarm ID</li>
 <li>Change the RTSP link of your camera</li>
