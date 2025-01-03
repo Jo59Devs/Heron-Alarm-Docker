@@ -25,7 +25,7 @@ RUN pip3 install --no-cache-dir --upgrade pip && \
     requests \
     imutils \
     paho-mqtt \
-    numpy==1.23.5 \
+    numpy \
     pillow
 WORKDIR /tmp
 COPY heron.py entrypoint.sh .
