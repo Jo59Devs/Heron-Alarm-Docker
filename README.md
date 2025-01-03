@@ -9,12 +9,12 @@ Installed Docker
 IP Camera (with zoom an advantage)<br/>
 MQTT Client, such as ioBroker, etc.<br/>
 Optional:<br/>
-Coral Edge TPU USB Accelerator - around 50 frames/s on Raspberry Pi 4, without it approximately 7 frames/s</ul>ul><br/>
+Coral Edge TPU USB Accelerator - around 50 frames/s on Raspberry Pi 4, without it approximately 7 frames/s</ul><br/>
 
 Steps:<br/>
-Create the following paths on the Docker host:<br/>
+<ul>Create the following paths on the Docker host:<br/>
 <code>mkdir docker/tflite</code> # Volume for the container<br/>
-<code>mkdir coral</code> # Add the repository files here<br/>
+<code>mkdir coral</code> # Add the repository files here</ul><br/>
 
 Edit <code>reiher.py</code><br/>
 Adjust your MQTT client<br/>
