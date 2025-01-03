@@ -12,7 +12,7 @@ Optional:<br/>
 Coral Edge TPU USB Accelerator - around 50 frames/s on Raspberry Pi 4, without it approximately 7 frames/s</ul><br/>
 
 Steps:<br/>
-<ul>Create the following paths on the Docker host:<br/>
+<ul><li>Create the following paths on the Docker host:<li><br/>
 <code>mkdir docker/tflite</code> # Volume for the container<br/>
 <code>mkdir coral</code> # Add the repository files here<br/>
 Edit <code>reiher.py</code><br/>
