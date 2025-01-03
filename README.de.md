@@ -14,7 +14,7 @@ Optional:
 Steps:<br/>
 <ul><li><code>mkdir docker/tflite</code> # Volume für den Container</li>
 <li><code>mkdir coral</code> # Hier die Repo Dateien einfügen</li>
-<li>Edit <code>reiher.py</code></li>
+Edit <code>reiher.py</code>
 <li>Anpassen des MQTT client</li>
 <li>Ändern der MQTT Alarm ID</li>
 <li>RTSP-Link der Camera anpassen</li>
