@@ -116,9 +116,8 @@ def make_interpreter(use_TPU):
         model_file, *device = model_file.split('@')
         return Interpreter(model_path=model_file)
 
-# MQTT
+# MQTT - Edit this Lines
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, "rpi-test")
-# Edit this Lines
 client.username_pw_set("user", "pass")
 client.connect("192.168.178.XX", 1883, 60)
 client.loop_start()
@@ -138,7 +137,7 @@ def main():
     # interpreter = make_interpreter('edgetpu')
     interpreter.allocate_tensors()
     _, height, width, _ = interpreter.get_input_details()[0]['shape']
-    # Initialize video stream - Edit the URL
+    # Initialize video stream - Edit the URL - recommended 640x480
     cam = "rtsp://admin:pass@192.168.178.XX:554//h264Preview_01_sub"
     vs = VideoStream(cam).start()
     # Waiting for Camera and Network
