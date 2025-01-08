@@ -1,4 +1,4 @@
-<h1>Heron Alarm at the Pond</h1>
+<h1>Detect herons at the Pond</h1>
 
 The Docker container monitors your pond.<br/>
 If a heron is detected, an alarm is triggered via MQTT.<br/>
