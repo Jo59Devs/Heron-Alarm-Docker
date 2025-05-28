@@ -13,9 +13,10 @@ from imutils.video import VideoStream, FPS
 from PIL import Image, ImageDraw, ImageFont
 from tflite_runtime.interpreter import Interpreter, load_delegate
 
+# Delay Alarm
+delay_time = time.time()
 # Edge-TPU 
 EDGETPU_SHARED_LIB = 'libedgetpu.so.1'
-
 # Heron Classes
 nval = [ 0.00, 0.00, 0.00, 0.00, 0.00, 0.01, 0.00, 0.00, 0.03, 0.01, 0.01, 0.50, 0.00]
 list = [   13,   61,  559,  560,  561,  563,  564,  566,  567,  572,  592,  604,  765]
@@ -51,11 +52,13 @@ def handle_signal(signum, frame):
 
 # Heron Alarm
 def send_alarm(image):
-    global client
-    stamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
-    cv2.imwrite("/tflite/image/"+stamp+"-Heron.jpg", image)
-    # Edit this Line
-    client.publish("mqtt.0.Yard.Heron", 'true')
+    global client, delay_time
+    if time.time() > delay_time + 30:
+        delay_time = time.time()
+        stamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
+        cv2.imwrite("/tflite/image/"+stamp+"-Heron.jpg", image)
+        # Edit this Line
+        client.publish("mqtt.0.Yard.Heron", 'true')
 
 def set_input_tensor(interpreter, image):
     tensor_index = interpreter.get_input_details()[0]['index']
